@@ -1,50 +1,46 @@
+let con = document.querySelector(".container");
+let scoreDisplay = document.querySelector(".score");
+console.log(scoreDisplay);
+
+let rock = document.querySelector(".rock");
+rock.addEventListener("click", (e) => playRound(getComputerChoice(), "rock"));
+
+let scissors = document.querySelector(".scissors");
+scissors.addEventListener("click", (e) =>
+  playRound(getComputerChoice(), "scissors"),
+);
+
+let paper = document.querySelector(".paper");
+paper.addEventListener("click", (e) => playRound(getComputerChoice(), "paper"));
+
 function getComputerChoice() {
   let computerChoice;
   let num = Math.floor(Math.random() * 9);
   computerChoice = num < 3 ? "paper" : 3 < num && num < 6 ? "rock" : "scissors";
   return computerChoice;
 }
-
-function getHumanChoice() {
-  let humanChoice = prompt("Enter your choice");
-  return humanChoice.toLowerCase();
-}
-// console.log(getHumanChoice());
-// console.log(getComputerChoice());
-
-let humanScore = 0,
-  computerScore = 0;
-
+let humanScore = 0;
+let computerScore = 0;
 function playRound(computerChoice, humanChoice) {
-  if (
+  if (computerScore === 5 || humanScore === 5) {
+    scoreDisplay.textContent =
+      computerScore > humanScore ? "Computer Win And You Lose" : "You Win!!";
+    humanScore = 0;
+    computerScore = 0;
+  } else if (
     (computerChoice == "rock" && humanChoice == "paper") ||
     (computerChoice == "scissors" && humanChoice == "rock") ||
     (computerChoice == "paper" && humanChoice == "scissors")
   ) {
-    console.log("You Win! , paper beat rock");
-    humanScore += 1;
-    console.log(`Your score is ${humanScore}`);
-    return humanScore;
+    scoreDisplay.textContent = `computer Score: ${computerScore} |   | human score: ${++humanScore}`;
   } else if (
     (computerChoice == "paper" && humanChoice == "rock") ||
     (computerChoice == "rock" && humanChoice == "scissors") ||
     (computerChoice == "scissors" && humanChoice == "paper")
   ) {
-    console.log("You Lose! , paper beat rock");
-    computerScore += 1;
-    console.log(`computer score is ${computerScore}`);
-    return computerScore;
+    scoreDisplay.textContent = `computer Score: ${++computerScore} |   | human score: ${humanScore}`;
+    scoreDisplay.style.fontWieght = bold;
   } else {
-    console.log("Draw!, both choice are the same");
+    scoreDisplay.textContent = "both choice are the same!!";
   }
 }
-
-function playGame() {
-  for (let i = 0; i < 5; i++) {
-    let choice1 = getComputerChoice();
-    let choice2 = getHumanChoice();
-    playRound(choice1, choice2);
-  }
-}
-
-playGame();

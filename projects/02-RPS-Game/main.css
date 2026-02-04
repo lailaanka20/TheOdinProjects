@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  width: 400px;
+  height: 400px;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  align-items: center;
+}
+.choice {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  border: none;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #b9a4ce;
+  color: #3c3535;
+  font-weight: bold;
+  border: 1px solid gray;
+}
+.scoreDisplay {
+  width: 80%;
+  height: 40px;
+  padding: 15px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: white;
+  margin: 20px 0;
+  font-weight: bold;
+}
